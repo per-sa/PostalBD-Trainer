@@ -13,6 +13,7 @@ namespace PostalBD_Trainer
         public Form1()
         {
             InitializeComponent();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -42,17 +43,18 @@ namespace PostalBD_Trainer
                 // swed.Nop(moduleBase, 0x46A421, 5); // Share opcode with other entities
 
                 // TO FIX: Pointers
-                var healthPtr = swed.ReadPointer(moduleBase, 0x02BD7DF0);
+                swed.Nop(moduleBase, 0x47BFE9, 5);
+
+                var healthPtr = swed.ReadPointer(moduleBase, 0x02BDC640);
+
 
                 healthPtr = swed.ReadPointer(healthPtr, 0x1C);
                 healthPtr = swed.ReadPointer(healthPtr, 0x98);
                 healthPtr = swed.ReadPointer(healthPtr, 0x290);
-                healthPtr = swed.ReadPointer(healthPtr, 0x18);
-                healthPtr = swed.ReadPointer(healthPtr, 0xD8);
+                healthPtr = swed.ReadPointer(healthPtr, 0x8);
 
 
-                swed.WriteBytes(healthPtr, 0xB0, BitConverter.GetBytes(9999));
-                swed.Nop(moduleBase, 0x47BFE9, 5);
+                swed.WriteFloat(healthPtr, 0xB8, 99e3F);
             }
             else
             {
