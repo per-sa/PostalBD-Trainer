@@ -5,6 +5,8 @@ namespace PostalBD_Trainer
 {
     public partial class Form1 : Form
     {
+
+
         Swed swed;
         IntPtr moduleBase;
 
@@ -37,12 +39,21 @@ namespace PostalBD_Trainer
         {
             if (checkBox2.Checked)
             {
-                swed.Nop(moduleBase, 0x46A421, 5);
+                // swed.Nop(moduleBase, 0x46A421, 5); // Share opcode with other entities
+                var healthPtr = swed.ReadPointer(moduleBase, 0x02BD7DF0);
+                healthPtr = swed.ReadPointer(healthPtr, 0x1C);
+                healthPtr = swed.ReadPointer(healthPtr, 0x98);
+                healthPtr = swed.ReadPointer(healthPtr, 0x290);
+                healthPtr = swed.ReadPointer(healthPtr, 0x18);
+                healthPtr = swed.ReadPointer(healthPtr, 0xD8);
+
+
+                swed.WriteBytes(healthPtr, 0xB0, BitConverter.GetBytes(9999));
                 swed.Nop(moduleBase, 0x47BFE9, 5);
             }
             else
             {
-                swed.WriteBytes(moduleBase, 0x46A421, "F3 0F 11 41 1C");
+                // swed.WriteBytes(moduleBase, 0x46A421, "F3 0F 11 41 1C");
                 swed.WriteBytes(moduleBase, 0x47BFE9, "F3 0F 11 52 20");
 
             }
