@@ -40,7 +40,10 @@ namespace PostalBD_Trainer
             if (checkBox2.Checked)
             {
                 // swed.Nop(moduleBase, 0x46A421, 5); // Share opcode with other entities
+
+                // TO FIX: Pointers
                 var healthPtr = swed.ReadPointer(moduleBase, 0x02BD7DF0);
+
                 healthPtr = swed.ReadPointer(healthPtr, 0x1C);
                 healthPtr = swed.ReadPointer(healthPtr, 0x98);
                 healthPtr = swed.ReadPointer(healthPtr, 0x290);
