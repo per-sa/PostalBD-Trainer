@@ -8,7 +8,12 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <PlatformTarget>x64</PlatformTarget>
+    <ApplicationIcon>RWS-web.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="RWS-web.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="swed64" Version="1.0.4" />
